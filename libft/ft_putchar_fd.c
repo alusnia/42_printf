@@ -6,13 +6,14 @@
 /*   By: alusnia <alusnia@student.42Warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 08:46:04 by alusnia           #+#    #+#             */
-/*   Updated: 2025/09/30 09:34:27 by alusnia          ###   ########.fr       */
+/*   Updated: 2025/11/08 13:11:34 by alusnia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+int	ft_putchar_fd(char c, int fd)
 {
 	write(fd, &c, 1);
+	return (1);
 }

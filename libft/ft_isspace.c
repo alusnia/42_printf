@@ -1,25 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alusnia <alusnia@student.42Warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/23 08:14:55 by alusnia           #+#    #+#             */
-/*   Updated: 2025/10/29 20:02:54 by alusnia          ###   ########.fr       */
+/*   Created: 2025/11/08 09:55:56 by alusnia           #+#    #+#             */
+/*   Updated: 2025/11/08 10:11:28 by alusnia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_isspace(int c)
 {
-	size_t	i;
-
-	if (!s)
-		return (0);
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	if ((c >= 9 && c <= 13) || c == 32)
+		return (8192);
+	return (0);
 }

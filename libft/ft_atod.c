@@ -1,22 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atod.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alusnia <alusnia@student.42Warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/26 12:34:22 by alusnia           #+#    #+#             */
-/*   Updated: 2025/11/08 09:57:27 by alusnia          ###   ########.fr       */
+/*   Created: 2025/11/08 09:55:08 by alusnia           #+#    #+#             */
+/*   Updated: 2025/11/13 11:47:59 by alusnia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+static double	add_decimal(const char *nptr)
 {
-	int		x;
-	int		sign;
+	double	x;
 	size_t	i;
+
+	x = 0;
+	i = 0;
+	while (ft_isdigit(nptr[i]))
+	{
+		x = (x * 10) + (nptr[i++] - '0');
+	}
+	while (i > 0)
+	{
+		x /= 10;
+		i--;
+	}
+	return (x);
+}
+
+double	ft_atod(const char *nptr)
+{
+	double		x;
+	int			sign;
+	size_t		i;
 
 	x = 0;
 	sign = 1;
@@ -36,5 +55,6 @@ int	ft_atoi(const char *nptr)
 		else
 			break ;
 	}
+	x += add_decimal(nptr + i + 1);
 	return (x * sign);
 }

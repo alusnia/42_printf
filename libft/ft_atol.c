@@ -1,25 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alusnia <alusnia@student.42Warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/23 08:14:55 by alusnia           #+#    #+#             */
-/*   Updated: 2025/10/29 20:02:54 by alusnia          ###   ########.fr       */
+/*   Created: 2025/11/14 12:38:44 by alusnia           #+#    #+#             */
+/*   Updated: 2025/11/14 12:48:48 by alusnia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+long	ft_atol(const char *nptr)
 {
+	long	x;
+	int		sign;
 	size_t	i;
 
-	if (!s)
-		return (0);
+	x = 0;
+	sign = 1;
 	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	while (nptr[i])
+	{
+		if ((ft_isspace(nptr[i]) || nptr[i] == '+')
+			&& (i == 0 || ft_isspace(nptr[i - 1])))
+			i++;
+		else if (nptr[i] == '-' && (i == 0 || ft_isspace(nptr[i - 1])))
+		{
+			sign = -1;
+			i++;
+		}
+		else if (ft_isdigit(nptr[i]) != 0 && x == (x * 10) / 10)
+			x = (x * 10) + (nptr[i++] - '0');
+		else
+			break ;
+	}
+	return (x * sign);
 }
