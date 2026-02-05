@@ -6,14 +6,14 @@
 /*   By: alusnia <alusnia@student.42Warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:39:56 by alusnia           #+#    #+#             */
-/*   Updated: 2026/02/05 17:15:31 by alusnia          ###   ########.fr       */
+/*   Updated: 2026/02/05 21:40:38 by alusnia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <stdarg.h>
-# include "libft.h"
+# include "../libft/incs/libft.h"
 
 int	ft_printf(const char *str, ...);
 
