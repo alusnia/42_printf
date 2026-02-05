@@ -6,7 +6,7 @@
 #    By: alusnia <alusnia@student.42Warsaw.pl>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/30 11:55:38 by alusnia           #+#    #+#              #
-#    Updated: 2026/02/05 17:14:39 by alusnia          ###   ########.fr        #
+#    Updated: 2026/02/05 19:10:20 by alusnia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		= libftprintf.a
 
 CC			= cc
 
-CFLAGS		=-g -Wall -Werror -Wextra -I$(INCS_DIR) -I./libft
+CFLAGS		=-g -Wall -Werror -Wextra -I$(INCS_DIR) -I./libft/incs
 
 SRCS_DIR	= ./srcs
 
