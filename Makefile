@@ -6,39 +6,72 @@
 #    By: alusnia <alusnia@student.42Warsaw.pl>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/30 11:55:38 by alusnia           #+#    #+#              #
-#    Updated: 2026/02/03 19:04:33 by alusnia          ###   ########.fr        #
+#    Updated: 2026/02/05 17:14:39 by alusnia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME        = libftprintf.a
-CC          = cc
-CFLAGS      = -Wall -Werror -Wextra -I.
-LIBFT_PATH  = ./libft
-LIBFT       = $(LIBFT_PATH)/libft.a
+NAME		= libftprintf.a
 
-SRC         = ft_printf.c
-OBJ         = $(SRC:.c=.o)
+CC			= cc
+
+CFLAGS		=-g -Wall -Werror -Wextra -I$(INCS_DIR) -I./libft
+
+SRCS_DIR	= ./srcs
+
+OBJS_DIR 	= ./objs
+
+OBJS		= $(addprefix $(OBJS_DIR)/,$(SRCS:.c=.o))
+
+INCS_DIR	= ./incs
+
+INCS		= $(INCS_DIR)/ft_printf.h
+
+LIBFT_DIR	= ./libft
+
+LIBFT_URL	= https://github.com/alusnia/42_libft
+
+LIBFT		= $(LIBFT_DIR)/libft.a
+
+SRCS		= ft_printf.c
+
+SEP			= "\n------------------------------------------------------------\n"
 
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(OBJ)
+$(NAME): $(LIBFT) $(OBJS)
 	cp $(LIBFT) $(NAME)
-	ar rcs $(NAME) $(OBJ)
+	ar rcs $(NAME) $(OBJS)
 
-$(LIBFT):
-	$(MAKE) -C $(LIBFT_PATH)
+$(LIBFT_DIR):
+	@echo $(SEP)
+	@echo "Missing library libft.\nDownloading from $(LIBFT_URL)"
+	@echo $(SEP)
+	@mkdir -p $(LIBFT_DIR)
+	@git clone $(LIBFT_URL) $(LIBFT_DIR)
 
-%.o: %.c ft_printf.h
+$(LIBFT): | $(LIBFT_DIR)
+	$(MAKE) -C $(LIBFT_DIR)
+
+$(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INCS) | $(OBJS_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(OBJS_DIR):
+	mkdir -p $(OBJS_DIR)
+
 clean:
-	rm -f $(OBJ)
-	$(MAKE) -C $(LIBFT_PATH) clean
+	@rm -rf $(OBJS_DIR)
+	@if [ -d $(LIBFT_DIR) ]; then $(MAKE) -C $(LIBFT_DIR) clean; fi
 
 fclean: clean
-	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_PATH) fclean
+	@rm -f $(NAME)
+	@if [ -d $(LIBFT_DIR) ]; then $(MAKE) -C $(LIBFT_DIR) fclean; fi
 
-re: fclean all
+del_lib:
+	@echo $(SEP)
+	@echo "Deleting library libft"
+	@echo $(SEP)
+	@rm -rf $(LIBFT_DIR)
 
-.PHONY: all clean fclean re
+re: del_lib fclean all
+
+.PHONY: all clean fclean re del_lib
