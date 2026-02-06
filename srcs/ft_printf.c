@@ -6,7 +6,7 @@
 /*   By: alusnia <alusnia@student.42Warsaw.pl>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 15:10:33 by alusnia           #+#    #+#             */
-/*   Updated: 2026/02/06 15:33:07 by alusnia          ###   ########.fr       */
+/*   Updated: 2026/02/06 17:31:27 by alusnia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,3 @@ int	ft_printf(const char *str, ...)
 	va_end(p);
 	return (count);
 }
-
