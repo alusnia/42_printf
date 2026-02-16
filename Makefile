@@ -6,7 +6,7 @@
 #    By: alusnia <alusnia@student.42Warsaw.pl>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/30 11:55:38 by alusnia           #+#    #+#              #
-#    Updated: 2026/02/05 19:10:20 by alusnia          ###   ########.fr        #
+#    Updated: 2026/02/16 12:15:00 by alusnia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,8 +39,9 @@ SEP			= "\n------------------------------------------------------------\n"
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJS)
-	cp $(LIBFT) $(NAME)
-	ar rcs $(NAME) $(OBJS)
+	@cp $(LIBFT) $(NAME)
+	@ar rcs $(NAME) $(OBJS)
+	@echo "$(NAME): Done!"
 
 $(LIBFT_DIR):
 	@echo $(SEP)
@@ -50,13 +51,13 @@ $(LIBFT_DIR):
 	@git clone $(LIBFT_URL) $(LIBFT_DIR)
 
 $(LIBFT): | $(LIBFT_DIR)
-	$(MAKE) -C $(LIBFT_DIR)
+	@$(MAKE) -C $(LIBFT_DIR)
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c $(INCS) | $(OBJS_DIR)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJS_DIR):
-	mkdir -p $(OBJS_DIR)
+	@mkdir -p $(OBJS_DIR)
 
 clean:
 	@rm -rf $(OBJS_DIR)
